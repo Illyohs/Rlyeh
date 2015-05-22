@@ -5,6 +5,7 @@ import java.util.HashMap;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import us.illyohs.rlyeh.math.Vector3;
 import us.illyohs.rlyeh.util.ExtendedPos;
 import us.illyohs.rlyeh.util.SigBlock;
@@ -27,7 +28,7 @@ public abstract class Pattern {
     
     protected HashMap<ExtendedPos, SigBlock> runicFormulae(ExtendedPos coords){
         if(getIsFlat()) {
-            coords = coords.copyWithNewFacing(1); //we need a new object so we don't side-effect other runes            
+            coords = coords.copyWithNewFacing(EnumFacing.UP); //we need a new object so we don't side-effect other runes            
         }
         return patternToShape(template(), coords); 
     }
@@ -35,6 +36,14 @@ public abstract class Pattern {
     private HashMap<ExtendedPos, SigBlock> patternToShape(Block[][][] template, ExtendedPos coords) {
         // TODO Auto-generated method stub
         return null;
+    }
+    
+    protected boolean stampBlockPattern(HashMap<ExtendedPos, SigBlock> stamp, EntityPlayer player) {
+        for(ExtendedPos target : stamp.keySet())
+//            target.setBlockId( stamp.get(target) );
+        	target
+        return true;
+        //TODO: build permission checking
     }
 
     /**

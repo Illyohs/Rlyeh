@@ -126,9 +126,5 @@ public class ExtendedPos extends BlockPos {
         return world;
     }
 
-    public ExtendedPos copyWithNewFacing(int i) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
 }
