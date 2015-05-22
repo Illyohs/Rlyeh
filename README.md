@@ -1,4 +1,4 @@
-Project Azathoth
+Project R'lyeh
 =========
 
 A simple library mod used by [Runix](https://github.com/Runix-Minecraft/Runix) & [Civil Magicks](https://github.com/LordIllyohs/CivilMagicks)
