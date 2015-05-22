@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2014, Runix-Minecraft
+ *  Copyright (c) 2014, Anthony Anderson(Lord Illyohs)
  *  All rights reserved.
  *  
  *  Redistribution and use in source and binary forms, with or without
@@ -27,8 +27,8 @@ package us.illyohs.rlyeh.internal;
 
 public class Reference {
     
-    public static final String MOD_ID = "Azathoth";
-    public static final String MOD_NAME = "Azathoth";
+    public static final String MOD_ID = "rlyeh";
+    public static final String MOD_NAME = "Rlyeh";
     public static final String MOD_VERSION = "@VERSION@";
     public static final String MOD_FINGERPRINT = "@FINGERPRINT@";
     
