@@ -26,25 +26,25 @@ public abstract class Pattern {
     
     public abstract void execute(BlockPos coords, EntityPlayer player);
     
-    protected HashMap<ExtendedPos, SigBlock> runicFormulae(ExtendedPos coords){
-        if(getIsFlat()) {
-            coords = coords.copyWithNewFacing(EnumFacing.UP); //we need a new object so we don't side-effect other runes            
-        }
-        return patternToShape(template(), coords); 
-    }
+//    protected HashMap<ExtendedPos, SigBlock> runicFormulae(ExtendedPos coords){
+//        if(getIsFlat()) {
+//            coords = coords.copyWithNewFacing(EnumFacing.UP); //we need a new object so we don't side-effect other runes            
+//        }
+//        return patternToShape(template(), coords); 
+//    }
     
     private HashMap<ExtendedPos, SigBlock> patternToShape(Block[][][] template, ExtendedPos coords) {
         // TODO Auto-generated method stub
         return null;
     }
     
-    protected boolean stampBlockPattern(HashMap<ExtendedPos, SigBlock> stamp, EntityPlayer player) {
-        for(ExtendedPos target : stamp.keySet())
-//            target.setBlockId( stamp.get(target) );
-        	target
-        return true;
-        //TODO: build permission checking
-    }
+//    protected boolean stampBlockPattern(HashMap<ExtendedPos, SigBlock> stamp, EntityPlayer player) {
+//        for(ExtendedPos target : stamp.keySet())
+////            target.setBlockId( stamp.get(target) );
+////        	target
+//        return true;
+//        //TODO: build permission checking
+//    }
 
     /**
      * @return the name
