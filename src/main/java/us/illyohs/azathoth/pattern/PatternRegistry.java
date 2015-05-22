@@ -14,7 +14,7 @@ public class PatternRegistry {
     public PatternRegistry() {
         MinecraftForge.EVENT_BUS.register(this);
     }
-    
+    //Huse a hashset for unique modids?
     public static ArrayList<PatternMeta> patReg = new ArrayList<PatternMeta>();
 
     public static void registerPattern(String modId, Pattern pattern) {
@@ -25,16 +25,18 @@ public class PatternRegistry {
     public void playerInteractEvent(PlayerInteractEvent event) {
         
         //Check to see if the player has punched a block
-        if(event.entityPlayer.worldObj.isRemote && event.action == Action.RIGHT_CLICK_BLOCK) {
+        if(event.entityPlayer.worldObj.isRemote && event.action == Action.RIGHT_CLICK_BLOCK && event.action != Action.RIGHT_CLICK_AIR) {
             //Search the surrounding blocks for a pattern
-            patternMatcher(event.entityPlayer, new ExtendedPos(event.entityPlayer, (int)event.pos.getX(), (int)event.pos.getY(),(int)event.pos.getZ()));
+            patternMatcher(event.entityPlayer, new ExtendedPos(event.entityPlayer.worldObj, event.pos.getX(), event.pos.getY(),event.pos.getZ(), event.face));
             
         }
                 //Do nothing if no pattern is found
     }
 
-    private void patternMatcher(EntityPlayer entityPlayer, ExtendedPos extendedPos) {
+    public  void patternMatcher(EntityPlayer entityPlayer, ExtendedPos extendedPos) {
+        
         //Fire event and execute patter if pattern is found
+            
         // TODO Auto-generated method stub
         
     }

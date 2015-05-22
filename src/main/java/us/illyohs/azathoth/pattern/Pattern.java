@@ -1,9 +1,13 @@
 package us.illyohs.azathoth.pattern;
 
-import us.illyohs.azathoth.math.Vector3;
+import java.util.HashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
+import us.illyohs.azathoth.math.Vector3;
+import us.illyohs.azathoth.util.ExtendedPos;
+import us.illyohs.azathoth.util.SigBlock;
 
 public abstract class Pattern {
 
@@ -20,8 +24,19 @@ public abstract class Pattern {
     }
     
     public abstract void execute(BlockPos coords, EntityPlayer player);
-
     
+    protected HashMap<ExtendedPos, SigBlock> runicFormulae(ExtendedPos coords){
+        if(getIsFlat()) {
+            coords = coords.copyWithNewFacing(1); //we need a new object so we don't side-effect other runes            
+        }
+        return patternToShape(template(), coords); 
+    }
+    
+    private HashMap<ExtendedPos, SigBlock> patternToShape(Block[][][] template, ExtendedPos coords) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     /**
      * @return the name
      */

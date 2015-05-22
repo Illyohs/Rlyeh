@@ -4,6 +4,7 @@ import us.illyohs.azathoth.math.Vector3;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 //This class seems like alot of what we're doing is duplicating BlockPos might
@@ -12,26 +13,25 @@ import net.minecraft.world.World;
 public class ExtendedPos extends BlockPos {
 
     public int              posX, posY, posZ;
-    public int              face;
+    public EnumFacing       face;
     private int             dimID = -500000;
     private transient World world = null;
-    
+
     public ExtendedPos(int x, int y, int z) {
         super(x, y, z);
         setWorld(defaultWorld());
     }
-    
-    
-    public ExtendedPos( World world, int x, int y, int z, int face) {
+
+    public ExtendedPos(World world, int x, int y, int z, EnumFacing face) {
         super(x, y, z);
         setWorld(world);
     }
-    
+
     public ExtendedPos(EntityPlayer player) {
-        super((int)(player.posX + 0.5), (int) (player.posY -1), (int) (player.posZ + 0.5));
+        super((int) (player.posX + 0.5), (int) (player.posY - 1), (int) (player.posZ + 0.5));
         setWorld(player.worldObj);
     }
-    
+
     public ExtendedPos(ExtendedPos pos) {
         super(pos);
         if (pos instanceof ExtendedPos) {
@@ -41,44 +41,44 @@ public class ExtendedPos extends BlockPos {
         }
     }
 
-
-    public ExtendedPos copyWithNewFaceing(int face) {
-        ExtendedPos ep  = new ExtendedPos(this);
-        ep.face         = face;
+    public ExtendedPos copyWithNewFaceing(EnumFacing face) {
+        ExtendedPos ep = new ExtendedPos(this);
+        ep.face = face;
         return ep;
     }
+
     public ExtendedPos rotate(ExtendedPos referencePoint, boolean counterClockwise) {
         Vector3 d = new Vector3(referencePoint, this);// determine quadrant elative to reference
         int direction = counterClockwise ? -1 : 1;
 
-        if (referencePoint.face == 1 || referencePoint.face == 0) { // UP or DOWN, xz rotation
+        if (referencePoint.face == face.UP || referencePoint.face == face.DOWN) { // UP or DOWN, xz rotation
             return referencePoint.offset(direction * -d.z, d.y, direction * d.x, face);
         }
-        if (referencePoint.face == 2 || referencePoint.face == 3) { // North South, XY rotation
+        if (referencePoint.face == face.NORTH || referencePoint.face == face.SOUTH) { // North South, XY rotation
             return referencePoint.offset(direction * d.y, direction * -d.x, d.z, face);
         }
-        
+
         return referencePoint.offset(d.x, direction * -d.z, direction * d.y, face); // East or West YZ rotation
     }
-    
-    //Don't think this is needed see BlockPos
+
+    // Don't think this is needed see BlockPos
     public ExtendedPos offset(int dX, int dY, int dZ) {
         return new ExtendedPos(this.getWorld(), this.getX() + dX, this.getY() + dY, this.getZ() + dZ, face);
     }
 
-    //Don't think this is needed see BlockPos
-    public ExtendedPos offset(int dX, int dY, int dZ, int facing) {
+    // Don't think this is needed see BlockPos
+    public ExtendedPos offset(int dX, int dY, int dZ, EnumFacing facing) {
         return new ExtendedPos(this.getWorld(), this.getX() + dX, this.getY() + dY, this.getZ() + dZ, facing);
     }
 
-    //Don't think this is needed see BlockPos
+    // Don't think this is needed see BlockPos
     public ExtendedPos offset(Vector3 delta) {
         return new ExtendedPos(this.getWorld(), getX() + delta.x, getY() + delta.y, getZ() + delta.z, face);
     }
 
-    //Don't think this is needed see BlockPos
+    // Don't think this is needed see BlockPos
     public ExtendedPos offsetWorld(Vector3 delta, World dem) {
-        return new ExtendedPos (dem, getX() + delta.x, getY() + delta.y, getZ() + delta.z, face);
+        return new ExtendedPos(dem, getX() + delta.x, getY() + delta.y, getZ() + delta.z, face);
     }
 
     public int getDimensionID() {
@@ -93,11 +93,11 @@ public class ExtendedPos extends BlockPos {
         if (!(otherObj instanceof BlockPos)) {
             return false;
         } else {
-            ExtendedPos other = (ExtendedPos)otherObj;
+            ExtendedPos other = (ExtendedPos) otherObj;
             if (this.getX() == other.posX && this.getY() == other.posY && this.getZ() == other.posZ) {
-                if(other instanceof ExtendedPos) { 
+                if (other instanceof ExtendedPos) {
                     return ((ExtendedPos) other).getWorld() == this.getWorld();
-                } else { //NOTE: This does not compare the face of each coordinate
+                } else { // NOTE: This does not compare the face of each coordinate
                     return true;
                 }
             }
@@ -124,6 +124,11 @@ public class ExtendedPos extends BlockPos {
             setWorld(dimID);
         }
         return world;
+    }
+
+    public ExtendedPos copyWithNewFacing(int i) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
