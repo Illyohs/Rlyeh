@@ -3,7 +3,7 @@ Project R'lyeh
 
 A simple library mod used by [Runix](https://github.com/Runix-Minecraft/Runix) & [Civil Magicks](https://github.com/LordIllyohs/CivilMagicks)
 
-This is a fork of the project [Azathoth]((https://github.com/Runix-Minecraft/Azathoth) updated to 1.8 & with a few of my rendering helpers
+This is a fork of the project [Azathoth](https://github.com/Runix-Minecraft/Azathoth) updated to 1.8 & with a few of my rendering helpers
 
 =========
 
