@@ -34,7 +34,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-public class Azathoth {
+public class Rlyeh {
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {}

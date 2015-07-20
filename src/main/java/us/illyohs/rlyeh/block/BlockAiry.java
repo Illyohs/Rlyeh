@@ -52,6 +52,7 @@ public class BlockAiry extends Block {
         return false;
     }
 
+    @Deprecated
     public void dropBlockAsItemWithChance(World world, int x, int y, int z, int p_149690_5_, float p_149690_6_,
             int p_149690_7_) {
     }

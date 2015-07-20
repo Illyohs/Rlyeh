@@ -1,5 +1,8 @@
 package us.illyohs.rlyeh.util;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import us.illyohs.rlyeh.math.Vector3;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -16,6 +19,7 @@ public class ExtendedPos extends BlockPos {
     public EnumFacing       face;
     private int             dimID = -500000;
     private transient World world = null;
+    public BlockPos pos;
 
     public ExtendedPos(int x, int y, int z) {
         super(x, y, z);
@@ -126,5 +130,29 @@ public class ExtendedPos extends BlockPos {
         return world;
     }
 
+    public boolean setBlock(Block block, IBlockState state, boolean overrideBedrock) {
+        if (block == Blocks.bedrock && overrideBedrock || getBlock() == Blocks.bedrock && overrideBedrock) {
+            return false;
+        } else {
+            return this.getWorld().setBlockState(pos, state);
+        }
+    }
 
+    public IBlockState getBlock() {
+        return this.getWorld().getBlockState(this.pos);
+    }
+
+    public ExtendedPos copyWithNewFacing(EnumFacing face) {
+        ExtendedPos extP = new ExtendedPos(this);
+        extP.face = face;
+        return extP;
+    }
+
+    public boolean setSigBlock(SigBlock sig, boolean overrideBedrock) {
+        if (sig.equals(Blocks.bedrock) && overrideBedrock || getBlock() == Blocks.bedrock && overrideBedrock) {
+            return false;
+        } else {
+            return this.getWorld().setBlockState(pos, sig.state);
+        }
+    }
 }

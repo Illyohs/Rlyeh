@@ -14,7 +14,6 @@ public class PatternRegistry {
     public PatternRegistry() {
         MinecraftForge.EVENT_BUS.register(this);
     }
-    //Huse a hashset for unique modids?
     public static ArrayList<PatternMeta> patReg = new ArrayList<PatternMeta>();
 
     public static void registerPattern(String modId, Pattern pattern) {

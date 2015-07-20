@@ -23,7 +23,7 @@ public class SigBlock {
         if (other instanceof SigBlock) {
             return block == ((SigBlock) other).block && state == ((SigBlock) other).state;
         } else if (other instanceof Block) {
-            return block.equals((Block) other); // can't get meta from block without coordinates
+            return block.equals((Block)other); // can't get meta from block without coordinates
         }
         
         if (other instanceof SigBlock) {

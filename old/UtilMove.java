@@ -33,7 +33,6 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import us.illyohs.azathoth.math.Vector3;
 import us.illyohs.azathoth.world.SigBlock;
-import us.illyohs.azathoth.world.WorldPos;
 
 public class UtilMove {
     

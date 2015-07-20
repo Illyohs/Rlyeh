@@ -37,7 +37,6 @@ import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import us.illyohs.azathoth.math.Vector3;
-import us.illyohs.azathoth.world.WorldPos;
 
 
 public class PatternRegistry {

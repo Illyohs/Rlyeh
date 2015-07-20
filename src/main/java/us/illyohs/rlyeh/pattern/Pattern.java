@@ -26,25 +26,39 @@ public abstract class Pattern {
     
     public abstract void execute(BlockPos coords, EntityPlayer player);
     
-//    protected HashMap<ExtendedPos, SigBlock> runicFormulae(ExtendedPos coords){
-//        if(getIsFlat()) {
-//            coords = coords.copyWithNewFacing(EnumFacing.UP); //we need a new object so we don't side-effect other runes            
-//        }
-//        return patternToShape(template(), coords); 
-//    }
-    
-    private HashMap<ExtendedPos, SigBlock> patternToShape(Block[][][] template, ExtendedPos coords) {
-        // TODO Auto-generated method stub
-        return null;
+    protected HashMap<ExtendedPos, SigBlock> patternFormulae(ExtendedPos coords){
+        if(getIsFlat()) {
+            coords = coords.copyWithNewFacing(EnumFacing.UP); //we need a new object so we don't side-effect other runes
+        }
+        return patternToShape(template(), coords);
     }
     
-//    protected boolean stampBlockPattern(HashMap<ExtendedPos, SigBlock> stamp, EntityPlayer player) {
-//        for(ExtendedPos target : stamp.keySet())
-////            target.setBlockId( stamp.get(target) );
-////        	target
-//        return true;
-//        //TODO: build permission checking
-//    }
+    private HashMap<ExtendedPos, SigBlock> patternToShape(Block[][][] pattern, ExtendedPos center) {
+        HashMap<ExtendedPos, SigBlock> shape = new HashMap<ExtendedPos, SigBlock>();
+        for (int y = 0; y < pattern.length; y++) {
+            for (int z = 0; z < pattern[y].length; z++) {
+                for (int x = 0; x < pattern[y][z].length; x++) {
+                    ExtendedPos target;
+
+                    switch (center.face) {
+                        case UP: //laying flat
+                        case DOWN:
+                            target = target = center.offset(-pattern[y][z].length / 2 + x,  -y,  -pattern[y].length / 2 + z);//TODO: clockwise vs CCW?
+                            break;
+//                        case 2
+                    }
+                }
+            }
+        }
+        return shape;
+    }
+    
+    protected boolean stampBlockPattern(HashMap<ExtendedPos, SigBlock> stamp, EntityPlayer player) {
+        for(ExtendedPos target : stamp.keySet())
+            target.setSigBlock(stamp.get(target), false);
+        return true;
+        //TODO: build permission checking
+    }
 
     /**
      * @return the name
