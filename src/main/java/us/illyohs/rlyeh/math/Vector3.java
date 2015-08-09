@@ -25,7 +25,6 @@
  */
 package us.illyohs.rlyeh.math;
 
-import us.illyohs.rlyeh.util.ExtendedPos;
 import net.minecraft.util.EnumFacing;
 
 //This class might be out of date(see net.minecraft.util.Vec3i) deprecating to remember to look at again.

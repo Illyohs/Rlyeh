@@ -3,7 +3,7 @@ package us.illyohs.rlyeh.pattern;
 
 public class PatternMeta {
 
-    String      modId;
+    String  modId;
     Pattern pattern;
 
     public PatternMeta(String modId, Pattern pattern) {
