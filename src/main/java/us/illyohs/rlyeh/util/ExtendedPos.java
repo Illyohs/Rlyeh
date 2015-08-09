@@ -35,6 +35,34 @@ public class ExtendedPos extends BlockPos {
         super(x, y, z);
     }
 
+    public ExtendedPos offsetWorld(World world, EnumFacing facing,  int offset) {
+        return new ExtendedPos(world, this.getX() + facing.getFrontOffsetX() * offset, this.getY() + facing.getFrontOffsetY() * offset, this.getZ() + facing.getFrontOffsetZ() * offset);
+    }
+
+    public ExtendedPos offsetWorldUp(World world, int offset) {
+       return this.offsetWorld(world, EnumFacing.UP, offset);
+    }
+
+    public ExtendedPos offsetWorldDown(World world, int offset) {
+        return this.offsetWorld(world, EnumFacing.DOWN, offset);
+    }
+
+    public ExtendedPos offsetWorldNorth(World world, int offset) {
+        return this.offsetWorld(world, EnumFacing.NORTH, offset);
+    }
+
+    public ExtendedPos offsetWorldSouth(World world, int offset) {
+        return this.offsetWorld(world, EnumFacing.SOUTH, offset);
+    }
+
+    public ExtendedPos offsetWorldEast(World world, int offset) {
+        return this.offsetWorld(world, EnumFacing.EAST, offset);
+    }
+
+    public ExtendedPos offsetWorldWest(World world, int offset) {
+        return this.offsetWorld(world, EnumFacing.WEST, offset);
+    }
+
     public void setWorld(World world) {
         this.world = world;
 //        demId =
