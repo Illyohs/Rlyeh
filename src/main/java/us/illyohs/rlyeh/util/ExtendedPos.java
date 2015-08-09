@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Vec3i;
 import net.minecraft.world.World;
 
 public class ExtendedPos extends BlockPos {
@@ -31,12 +32,21 @@ public class ExtendedPos extends BlockPos {
         this.setDemId(demId);
     }
 
-    public ExtendedPos(World worldObj, int x, int y, int z, EnumFacing face) {
+    public ExtendedPos(World world, int x, int y, int z, EnumFacing face) {
         super(x, y, z);
+        this.setWorld(world);
     }
 
     public ExtendedPos offsetWorld(World world, EnumFacing facing,  int offset) {
         return new ExtendedPos(world, this.getX() + facing.getFrontOffsetX() * offset, this.getY() + facing.getFrontOffsetY() * offset, this.getZ() + facing.getFrontOffsetZ() * offset);
+    }
+
+    public ExtendedPos add(World world, int add) {
+        return new ExtendedPos(world, this.getX() + add, this.getY() + add, this.getZ() + add);
+    }
+
+    public ExtendedPos add(World world, Vec3i vec) {
+        return new ExtendedPos(world, vec.getX(), vec.getY(), vec.getZ());
     }
 
     public ExtendedPos offsetWorldUp(World world, int offset) {

@@ -1,13 +1,8 @@
 package us.illyohs.rlyeh.pattern;
 
-import java.util.HashMap;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import us.illyohs.rlyeh.math.Vector3;
-import us.illyohs.rlyeh.util.SigBlock;
 
 public abstract class Pattern {
 
