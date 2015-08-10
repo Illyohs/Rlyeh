@@ -1,11 +1,17 @@
 package us.illyohs.rlyeh.util;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Vec3i;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+
 
 public class ExtendedPos extends BlockPos {
 
@@ -87,13 +93,56 @@ public class ExtendedPos extends BlockPos {
     }
 
     public int getDemId() {
-        return demId;
+        return this.getWorld().provider.getDimensionId();
     }
 
-    public static World defualtWorld() {
+    public World defualtWorld() {
         return MinecraftServer.getServer().worldServerForDimension(0);
     }
 
-//    public Ex
+    public Block getBlock() {
+        return this.getWorld().getBlockState(new ExtendedPos(getX(), getY(), getZ())).getBlock();
+    }
+
+    public IBlockState getState() {
+        return getWorld().getBlockState(new ExtendedPos(getX(), getY(), getZ()));
+    }
+
+    public SigBlock getSigBlock() {
+        return new SigBlock(getBlock(), getState());
+    }
+
+    public boolean setBlockStateUpdate(IBlockState blockState) {
+       if (blockState == Blocks.bedrock || getBlock() == Blocks.bedrock) {
+           return false;
+       } else {
+           return this.getWorld().setBlockState(new ExtendedPos(getX(),getY(),getZ()), blockState);
+       }
+    }
+
+    public boolean setBlockSig(SigBlock sigBlock) {
+        if (sigBlock.equals(Blocks.bedrock) || getBlock() == Blocks.bedrock) {
+            return false;
+        } else {
+            return this.getWorld().setBlockState(new ExtendedPos(getX(), getY(), getZ()), sigBlock.state);
+        }
+    }
+
+    public double getDistance(ExtendedPos ePos) {
+        double dist = (getX() - ePos.getX()) * (getY() - ePos.getY()) * (getZ() - ePos.getZ());
+        return Math.sqrt(dist + (getY() - ePos.getY()) * (getY() - ePos.getY()));
+    }
+
+    public ArrayList<BlockPos> getDirectNeighbors() {
+        ArrayList<BlockPos> neighbores = new ArrayList<BlockPos>();
+        neighbores.add(offset(EnumFacing.UP));
+        neighbores.add(offset(EnumFacing.DOWN));
+        neighbores.add(offset(EnumFacing.EAST));
+        neighbores.add(offset(EnumFacing.WEST));
+        neighbores.add(offset(EnumFacing.NORTH));
+        neighbores.add(offset(EnumFacing.SOUTH));
+
+        return neighbores;
+    }
 
 }
