@@ -3,6 +3,7 @@ package us.illyohs.rlyeh.pattern;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 
 public abstract class Pattern {
 
@@ -14,7 +15,7 @@ public abstract class Pattern {
     
     protected abstract Block[][][] template();
     
-    public void execute(BlockPos coords, EntityPlayer player, Vector3 forward) {
+    public void execute(BlockPos coords, EntityPlayer player, EnumFacing facing) {
         
     }
     
