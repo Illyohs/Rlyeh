@@ -1,14 +1,9 @@
 package us.illyohs.rlyeh.pattern;
 
-import java.util.HashMap;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import us.illyohs.rlyeh.math.Vector3;
-import us.illyohs.rlyeh.util.ExtendedPos;
-import us.illyohs.rlyeh.util.SigBlock;
 
 public abstract class Pattern {
 
@@ -20,31 +15,11 @@ public abstract class Pattern {
     
     protected abstract Block[][][] template();
     
-    public void execute(BlockPos coords, EntityPlayer player, Vector3 forward) {
+    public void execute(BlockPos coords, EntityPlayer player, EnumFacing facing) {
         
     }
     
     public abstract void execute(BlockPos coords, EntityPlayer player);
-    
-//    protected HashMap<ExtendedPos, SigBlock> runicFormulae(ExtendedPos coords){
-//        if(getIsFlat()) {
-//            coords = coords.copyWithNewFacing(EnumFacing.UP); //we need a new object so we don't side-effect other runes            
-//        }
-//        return patternToShape(template(), coords); 
-//    }
-    
-    private HashMap<ExtendedPos, SigBlock> patternToShape(Block[][][] template, ExtendedPos coords) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
-//    protected boolean stampBlockPattern(HashMap<ExtendedPos, SigBlock> stamp, EntityPlayer player) {
-//        for(ExtendedPos target : stamp.keySet())
-////            target.setBlockId( stamp.get(target) );
-////        	target
-//        return true;
-//        //TODO: build permission checking
-//    }
 
     /**
      * @return the name

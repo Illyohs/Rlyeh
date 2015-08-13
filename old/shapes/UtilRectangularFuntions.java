@@ -27,8 +27,6 @@ package us.illyohs.azathoth.shapes;
 
 import java.util.HashSet;
 
-import us.illyohs.azathoth.world.WorldPos;
-
 public class UtilRectangularFuntions {
     
     public static HashSet<WorldPos> getRectangularPrism(WorldPos coords, int length, int width, int hight) {

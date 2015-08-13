@@ -2,19 +2,18 @@ package us.illyohs.rlyeh.pattern;
 
 import java.util.ArrayList;
 
-import us.illyohs.rlyeh.util.ExtendedPos;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import us.illyohs.rlyeh.util.ExtendedPos;
 
 public class PatternRegistry {
     
     public PatternRegistry() {
         MinecraftForge.EVENT_BUS.register(this);
     }
-    //Huse a hashset for unique modids?
     public static ArrayList<PatternMeta> patReg = new ArrayList<PatternMeta>();
 
     public static void registerPattern(String modId, Pattern pattern) {

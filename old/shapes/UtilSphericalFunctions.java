@@ -28,7 +28,6 @@ package us.illyohs.azathoth.shapes;
 import java.util.HashSet;
 
 import net.minecraft.world.World;
-import us.illyohs.azathoth.world.WorldPos;
 
 public class UtilSphericalFunctions {
 
