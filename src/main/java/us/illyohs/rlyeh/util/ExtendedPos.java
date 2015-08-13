@@ -12,11 +12,11 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-
 public class ExtendedPos extends BlockPos {
 
     private transient World world = null;
-    private int demId;
+    private int             demId;
+    private EnumFacing      face;
 
     public ExtendedPos(int x, int y, int z) {
         super(x, y, z);
@@ -29,7 +29,7 @@ public class ExtendedPos extends BlockPos {
     }
 
     public ExtendedPos(EntityPlayer player) {
-        super((int)(player.posX + .5),(int)(player.posY - 1),(int)(player.posZ + .5));
+        super((int) (player.posX + .5), (int) (player.posY - 1), (int) (player.posZ + .5));
         this.setWorld(player.worldObj);
     }
 
@@ -43,8 +43,9 @@ public class ExtendedPos extends BlockPos {
         this.setWorld(world);
     }
 
-    public ExtendedPos offsetWorld(World world, EnumFacing facing,  int offset) {
-        return new ExtendedPos(world, this.getX() + facing.getFrontOffsetX() * offset, this.getY() + facing.getFrontOffsetY() * offset, this.getZ() + facing.getFrontOffsetZ() * offset);
+    public ExtendedPos offsetWorld(World world, EnumFacing facing, int offset) {
+        return new ExtendedPos(world, this.getX() + facing.getFrontOffsetX() * offset,
+                this.getY() + facing.getFrontOffsetY() * offset, this.getZ() + facing.getFrontOffsetZ() * offset);
     }
 
     public ExtendedPos add(World world, int add) {
@@ -56,7 +57,7 @@ public class ExtendedPos extends BlockPos {
     }
 
     public ExtendedPos offsetWorldUp(World world, int offset) {
-       return this.offsetWorld(world, EnumFacing.UP, offset);
+        return this.offsetWorld(world, EnumFacing.UP, offset);
     }
 
     public ExtendedPos offsetWorldDown(World world, int offset) {
@@ -79,10 +80,12 @@ public class ExtendedPos extends BlockPos {
         return this.offsetWorld(world, EnumFacing.WEST, offset);
     }
 
-    public void setWorld(World world) {
-        this.world = world;
-//        demId =
-    }
+//    public ExtendedPos(ExtendedPos refrence, boolean counterClockwise) {
+//        Vec3i d = new Vec3i(refrence.getX(), refrence.getY(), refrence.getZ());
+//        int direction = counterClockwise ? -1 : 1;
+//        EnumFacing facing;
+//        if (refrence.face == facing.UP || refrence.face == facing.DOWN) return refrence.offsetWorld(getWorld(), facing,d.getX() * refrence)
+//    }
 
     public World getWorld() {
         return world;
@@ -113,11 +116,11 @@ public class ExtendedPos extends BlockPos {
     }
 
     public boolean setBlockStateUpdate(IBlockState blockState) {
-       if (blockState == Blocks.bedrock || getBlock() == Blocks.bedrock) {
-           return false;
-       } else {
-           return this.getWorld().setBlockState(new ExtendedPos(getX(),getY(),getZ()), blockState);
-       }
+        if (blockState == Blocks.bedrock || getBlock() == Blocks.bedrock) {
+            return false;
+        } else {
+            return this.getWorld().setBlockState(new ExtendedPos(getX(), getY(), getZ()), blockState);
+        }
     }
 
     public boolean setBlockSig(SigBlock sigBlock) {
